@@ -3,11 +3,30 @@
 # Prerequisite 
 
 **Install Kubectl**
-https://kubernetes.io/docs/tasks/tools/
+https://docs.aws.amazon.com/eks/latest/userguide/install-kubectl.html
+
+curl -O https://s3.us-west-2.amazonaws.com/amazon-eks/1.25.15/2023-11-14/bin/linux/amd64/kubectl
+chmod +x ./kubectl
+mkdir -p $HOME/bin && cp ./kubectl $HOME/bin/kubectl && export PATH=$HOME/bin:$PATH
+echo 'export PATH=$HOME/bin:$PATH' >> ~/.bashrc
+kubectl version --client
 
 
 **Install Helm**
 https://helm.sh/docs/intro/install/
+
+ curl -fsSL -o get_helm.sh https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3
+ chmod 700 get_helm.sh
+ ./get_helm.sh
+ export PATH=/usr/local/bin:$PATH
+ helm version | cut -d + -f 1
+
+Run Terraform Scripts
+ -- cd three-tier-eks-iac
+    cd terraform
+    terraform init
+    terraform plan
+    terraform apply  and enter yes
 
 ```
 helm repo update
@@ -15,10 +34,6 @@ helm repo update
 
 **Install/update latest AWS CLI:** (make sure install v2 only)
 https://aws.amazon.com/cli/
-
-**Refer to below Youtube Video Tutorial**
-
-[![YouTube Video](https://img.youtube.com/vi/ebSAb-ERqAM/maxresdefault.jpg)](https://www.youtube.com/watch?v=ebSAb-ERqAM)
 
 
 #update the Kubernetes context
@@ -184,5 +199,7 @@ kubectl delete -f -f
 cd terraform
 terraform destroy --auto-approve
 ```
+Learn terraform
 
+https://www.youtube.com/watch?v=7xngnjfIlK4
 
